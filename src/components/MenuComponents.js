@@ -4,17 +4,18 @@ import Loading from './LoadingComponent';
 
 function RenderMenuItem ({dish, onClick}) {
     return (
-    <Card onClick ={ () => onClick(dish.id)}>
+    <Card onClick ={() => onClick(dish.id)}>
 
-    <CardImg with='100%' object src={dish.image} alt={dish.name} />
+    <CardImg with='100%' object src={dish.image} alt={dish.name}  />
 
-    <CardImgOverlay>
-        <CardTitle >{dish.name}</CardTitle>
+    <CardImgOverlay >
+        <CardTitle>{dish.name}</CardTitle>
 
     </CardImgOverlay>
     </Card>
     )
-}
+}   
+ 
 
     const Menu = (props) => {
         // console.log(this.props.dish)
@@ -31,6 +32,7 @@ function RenderMenuItem ({dish, onClick}) {
                 <div className="row">
                     {menu}
                 </div>
+               
             </div>
         );
     

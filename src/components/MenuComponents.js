@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 import Loading from './LoadingComponent';
+import About from './AboutComponent'
 
 function RenderMenuItem ({dish, onClick}) {
     return (

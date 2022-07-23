@@ -35,13 +35,13 @@ class Menu extends Component {
             <div className='col-xs-12 col-sm-6 col-md-12 mt-2'>
                     <Card>
                         <CardBody className="row">
-                            <div className="col-md-3">
+                            <div className="col-md-3 col-sm-3 col-xs-12 ">
                             <CardImg src={staff.image} />
                             </div>
-                            <div className="col-md-9">
-                            <CardTitle>Họ và tên :{staff.name}</CardTitle>
-                            <CardText>Ngày sinh :{dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
-                            <CardText> Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")} </CardText>      
+                            <div className="col-md-9 col-sm-3 col-xs-12">
+                            <CardTitle>Họ và tên : {staff.name}</CardTitle>
+                            <CardText>Ngày sinh : {dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
+                            <CardText> Ngày vào công ty : {dateFormat(staff.startDate, "dd/mm/yyyy")} </CardText>      
                             <CardText> Phòng ban công ty : {staff.department.name}</CardText> 
                             <CardText> Số ngày nghỉ còn lại : {staff.annualLeave} </CardText>
                             <CardText> Số ngày đã làm thêm : {staff.overTime}</CardText>
@@ -72,8 +72,8 @@ class Menu extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h3 color='primary'> Nhân viên </h3>
-                        <hr/>
+                    <h3 > Nhân viên </h3>
+                       
                 </div>
                 <div className="row">
                     {menu}

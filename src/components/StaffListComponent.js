@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 
 class Menu extends Component {
-   
+    
     constructor(props){
         super(props);
 
@@ -14,6 +14,7 @@ class Menu extends Component {
             selectStaff : null ,
            
         }
+       
     }
     ///////////khi click vao thì hiển thị thông tin chi tiết //////////
     onForm(staff){

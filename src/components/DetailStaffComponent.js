@@ -61,7 +61,6 @@ class Menu extends Component {
                 <div key={staff.id} className = 'col-sm-12 col-xs-12 col-md-5 mt-4 '>
                     <Card onClick= {() => this.onForm(staff)}>                     
                         <CardTitle >{staff.name}</CardTitle>
-                        <CardImg src={staff.image} />
                     </Card>
                 </div>
             )

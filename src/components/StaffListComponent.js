@@ -71,8 +71,8 @@ class Menu extends Component {
         
         return (
             <div className="container">
-                <div className="row">
-                    <h3 > Nhân viên </h3>
+                <div className="row title" >
+                    <h3 > NHÂN VIÊN </h3>
                        
                 </div>
                 <div className="row">

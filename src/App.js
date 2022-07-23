@@ -20,9 +20,9 @@ class App extends Component {
     return (
       <div className="App">
         
-        <Navbar dark color="primary">
+        <Navbar dark color="danger">
           <div className="container">
-            <NavbarBrand href="/"> Ứng dụng quản lí nhân sự v1.0 </NavbarBrand>
+            <NavbarBrand href="/"> ỨNG DỤNG QUẢN LÝ NHÂN SỰ V1.0 </NavbarBrand>
           </div>
         </Navbar>
           <Menu  staffs = {this.state.staff} /> 

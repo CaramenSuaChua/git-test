@@ -26,16 +26,6 @@ class Menu extends Component {
         }
     }
 
-    /////////lấy tên bộ phận làm việc /////////////////
-    renderPart(staff){
-        if(staff !== null) {
-        return staff.departments?.map((department) => {
-            <div className='col-xs-12 col-sm-12 col-md-12 mt-2'>
-                <CardText>{department.name}</CardText>
-            </div>
-        })
-    }
-    }
 
     //////////////hiển thị thông tin chi tiết//////////////
     renderInfor(staff) {
@@ -88,7 +78,6 @@ class Menu extends Component {
                 </div>
                 <div className="row">
                     {this.renderInfor(this.state.selectStaff)}
-                    {this.renderPart(this.state.selectStaff)}          
                 </div>
             </div>
         )

@@ -41,16 +41,20 @@ class Menu extends Component {
     renderInfor(staff) {
         if (staff !==null) {     
         return(
-            <div className='col-xs-12 col-sm-12 col-md-10 mt-2'>
-                    <Card >
-                        <CardBody>
+            <div className='col-xs-12 col-sm-12 col-md-12 mt-2'>
+                    <Card>
+                        <CardBody className="row">
+                            <div className="col-md-3">
                             <CardImg src={staff.image} />
+                            </div>
+                            <div className="col-md-9">
                             <CardTitle>Họ và tên :{staff.name}</CardTitle>
                             <CardText>Ngày sinh :{dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
                             <CardText> Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")} </CardText>      
                             <CardText> Phòng ban công ty : {staff.department.name}</CardText> 
                             <CardText> Số ngày nghỉ còn lại : {staff.annualLeave} </CardText>
                             <CardText> Số ngày đã làm thêm : {staff.overTime}</CardText>
+                            </div>
                         </CardBody>
                     </Card>
                 </div>                            
@@ -62,7 +66,7 @@ class Menu extends Component {
     render() {
         const menu = this.props.staffs.map ((staff) => {
             return (    
-                <div key={staff.id} className = 'col-sm-12 col-xs-12 col-md-5 mt-4 '>
+                <div key={staff.id} className = 'col-sm-12 col-xs-12 col-md-3 mt-4 '>
                     <Card  onClick={() => this.onForm(staff)}> 
                         <CardBody row >
                         <CardTitle >{staff.name}</CardTitle>

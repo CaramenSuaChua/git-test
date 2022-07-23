@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 import dateFormat from 'dateformat'; 
 import Detail from './DetailStaffComponent';
+import {Link} from 'react-router-dom'
+
 
 class Menu extends Component {
    
@@ -10,6 +12,7 @@ class Menu extends Component {
 
         this.state = {
             selectStaff : null ,
+           
         }
     }
     ///////////khi click vao thì hiển thị thông tin chi tiết //////////
@@ -41,6 +44,7 @@ class Menu extends Component {
             <div className='col-xs-12 col-sm-12 col-md-10 mt-2'>
                     <Card >
                         <CardBody>
+                            <CardImg src={staff.image} />
                             <CardTitle>Họ và tên :{staff.name}</CardTitle>
                             <CardText>Ngày sinh :{dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
                             <CardText> Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")} </CardText>      
@@ -59,9 +63,11 @@ class Menu extends Component {
         const menu = this.props.staffs.map ((staff) => {
             return (    
                 <div key={staff.id} className = 'col-sm-12 col-xs-12 col-md-5 mt-4 '>
-                    <Card onClick= {() => this.onForm(staff)}>                     
+                    <Card  onClick={() => this.onForm(staff)}> 
+                        <CardBody row >
                         <CardTitle >{staff.name}</CardTitle>
                         <CardImg src={staff.image} />
+                        </CardBody>                    
                     </Card>
                 </div>
             )
@@ -70,6 +76,9 @@ class Menu extends Component {
         
         return (
             <div className="container">
+                <div className="row">
+                    <h3> Nhân viên </h3>
+                </div>
                 <div className="row">
                     {menu}
                 </div>

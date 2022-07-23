@@ -32,7 +32,7 @@ class Menu extends Component {
     renderInfor(staff) {
         if (staff !==null) {     
         return(
-            <div className='col-xs-12 col-sm-12 col-md-12 mt-2'>
+            <div className='col-xs-12 col-sm-6 col-md-12 mt-2'>
                     <Card>
                         <CardBody className="row">
                             <div className="col-md-3">
@@ -60,8 +60,8 @@ class Menu extends Component {
                 <div key={staff.id} className = 'col-sm-12 col-xs-12 col-md-3 mt-4 '>
                     <Card  onClick={() => this.onForm(staff)}> 
                         <CardBody row >
-                        <CardTitle >{staff.name}</CardTitle>
                         <CardImg src={staff.image} />
+                        <CardTitle className="name" >{staff.name}</CardTitle>
                         </CardBody>                    
                     </Card>
                 </div>
@@ -72,7 +72,8 @@ class Menu extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h3> Nhân viên </h3>
+                    <h3 color='primary'> Nhân viên </h3>
+                        <hr/>
                 </div>
                 <div className="row">
                     {menu}

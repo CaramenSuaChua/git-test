@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, CardTitle, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import {LEADERS} from '../shared/leader';
+import {LEADERS} from '../shared/leaders';
 // import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
 

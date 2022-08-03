@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import Main from './components/MainComponent';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
-import {Provider} from 'react-redux'
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 

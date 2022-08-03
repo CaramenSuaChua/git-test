@@ -4,7 +4,7 @@ import {baseUrl} from '../shared/baseUrl';
 export const fetchStaffs = () => (dispatch) => {
     dispatch(staffsLoading(true))
 
-    return(baseUrl + 'staffs')
+    return fetch(baseUrl + 'staffs')
     .then(response =>{
         if(response.ok){
             return response;

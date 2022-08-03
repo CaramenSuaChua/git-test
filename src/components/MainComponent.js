@@ -12,12 +12,12 @@ import Home from './HomeComponents';
 
 const mapStateToProps = state =>{
     return{
-        staffs:state.staffs
+        staffs:state.staffs,
     }
 }
 
 const mapDispatchToProps = (dispatch) =>({
-    fetchStaffs:() =>{dispatch(fetchStaffs())}
+    fetchStaffs:() =>{ dispatch(fetchStaffs())}
 })
 
 class Main extends Component {
@@ -53,7 +53,7 @@ class Main extends Component {
 
         const HomePage = () => {
             return(
-                <Home staff={this.props.staffs.staffs.filter((staffs) => staffs.featured)[0]}
+                <Home staff={this.props.staffs.staffs}
                 staffsLoading={this.props.staffs.isLoading}
                 staffsErrMess={this.props.staffs.errMess}
                 />

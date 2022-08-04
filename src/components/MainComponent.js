@@ -5,7 +5,7 @@ import Depart from './DepartmentComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import Salary from "./SalaryComponent";
 import Detail from "./Detail";
-import {fetchStaffs} from '../redux/ActionCreator';
+import {fetchSalary, fetchStaffs, fetchDeparts} from '../redux/ActionCreator';
 import { connect } from 'react-redux';
 import Home from './HomeComponents';
 
@@ -13,17 +13,23 @@ import Home from './HomeComponents';
 const mapStateToProps = state =>{
     return{
         staffs:state.staffs,
+        departs:state.departs,
+        salarys: state.salarys,
     }
 }
 
 const mapDispatchToProps = (dispatch) =>({
-    fetchStaffs:() =>{ dispatch(fetchStaffs())}
+    fetchStaffs:() =>{ dispatch(fetchStaffs())},
+    fetchDeparts:() =>{ dispatch(fetchDeparts())},
+    fetchSalary:() =>{ dispatch(fetchSalary())}
 })
 
 class Main extends Component {
 
     componentDidMount(){
         this.props.fetchStaffs();
+        this.props.fetchDeparts();
+        this.props.fetchSalary();
     }
 
     constructor(props) {
@@ -53,9 +59,15 @@ class Main extends Component {
 
         const HomePage = () => {
             return(
-                <Home staff={this.props.staffs.staffs}
+                <Home staff={this.props.staffs.staffs.filter(staffs => staffs.featured)[0]}
                 staffsLoading={this.props.staffs.isLoading}
                 staffsErrMess={this.props.staffs.errMess}
+                depart = {this.props.departs.departs.filter(departs => departs.featured)[0]}
+                departsLoading={this.props.departs.isLoading}
+                departsErrMess={this.props.departs.errMess}
+                salary={this.props.salary.salary.filter(salarys => salarys.featured)[0]}
+                salarysLoading={this.props.salary.isLoading}
+                salarysErrMess={this.props.salary.errMess}
                 />
             )
         }
@@ -64,7 +76,7 @@ class Main extends Component {
                 <Switch  >
                     <Route path='/home' component={HomePage} />
                     <Route path="/stafflist" component={() => { return <Menu staffs={this.state.staffs} handleAddStaff={this.handleAddStaff} /> }} />
-                    <Route path='/department' component={() => { return <Depart departments={this.state.departments} /> }} />
+                    <Route path='/department' component={() => { return <Depart departs={this.state.departs} /> }} />
                     <Route path='/payroll' component={() => { return <Salary staffs={this.state.staffs} /> }} />
                     <Route path='/detail/:id' component={() => { return <Detail staffs={this.state.staffs} /> }} />
                     <Redirect to='/home' />

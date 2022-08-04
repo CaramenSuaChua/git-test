@@ -20,7 +20,7 @@ function RenderCard({ item, isLoading, errMess }) {
     }
     else
         return (
-            <FadeTransform in 
+            <FadeTransform in
                 transformProps={{
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
@@ -36,7 +36,7 @@ function RenderCard({ item, isLoading, errMess }) {
         );
 }
 
-function Home (props) {
+function Home(props) {
     return (
         <div className="container">
             <div className="row align-items-start">
@@ -44,6 +44,12 @@ function Home (props) {
                     <RenderCard item={props.staff}
                         isLoading={props.staffsLoading}
                         errMess={props.staffsErrMess} />
+                    <RenderCard item={props.depart}
+                        isLoading={props.departsLoading}
+                        errMess={props.departsErrMess} />
+                    <RenderCard item={props.salary}
+                        isLoading={props.salarysLoading}
+                        errMess={props.salarysErrMess} />
                 </div>
             </div>
         </div>

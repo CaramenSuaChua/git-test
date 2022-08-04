@@ -5,7 +5,7 @@ import Depart from './DepartmentComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import Salary from "./SalaryComponent";
 import Detail from "./Detail";
-import {fetchSalary, fetchStaffs, fetchDeparts} from '../redux/ActionCreator';
+import {fetchSalary, fetchStaffs, fetchDeparts, postComment} from '../redux/ActionCreator';
 import { connect } from 'react-redux';
 import Home from './HomeComponents';
 
@@ -19,6 +19,9 @@ const mapStateToProps = state =>{
 }
 
 const mapDispatchToProps = (dispatch) =>({
+    postComment:(staffId, rating, author, comment) =>{
+        dispatch(postComment(staffId, rating, author, comment))
+    },
     fetchStaffs:() =>{ dispatch(fetchStaffs())},
     fetchDeparts:() =>{ dispatch(fetchDeparts())},
     fetchSalary:() =>{ dispatch(fetchSalary())}
@@ -58,6 +61,9 @@ class Main extends Component {
     render() {
 
         const HomePage = () => {
+            console.log(this.props.staffs)
+            console.log(this.props.departs)
+            console.log(this.props)
             return(
                 <Home staff={this.props.staffs.staffs.filter(staffs => staffs.featured)[0]}
                 staffsLoading={this.props.staffs.isLoading}
@@ -69,7 +75,10 @@ class Main extends Component {
                 salarysLoading={this.props.salary.isLoading}
                 salarysErrMess={this.props.salary.errMess}
                 />
+
+               
             )
+            
         }
         return (
             <div>

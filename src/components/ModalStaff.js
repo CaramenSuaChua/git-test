@@ -10,12 +10,12 @@ class ModalStaff extends React.Component {
     render() {
         return (
             <FormGroup>
-                <Col md={{ size: 4, offset: 4 }}>
+                <Col md={{ size: 5, offset: 5 }} className='mt-2'>
                     <Input type='search' placeholder='Tìm nhân viên' onChange={(e) => this.setState({ search: e.target.value })}
                     />
+                    <Button md={{ size: 2 }} color='primary' forHtml='Tìm'
+                    onClick={() => this.props.searchStaff(this.state.search)}>Search {''} <i className="fa fa-search" aria-hidden="true"></i></Button>
                 </Col>
-                <Button color='primary' md={{ size: 1}} forHtml='Tìm'
-                onClick={() => this.props.searchStaff(this.state.search)}>Tìm {' '}</Button>
             </FormGroup >
         )
     }

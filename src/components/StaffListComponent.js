@@ -48,7 +48,7 @@ const Menu = ({ staffs, handleAddStaff }) => {
         <div className="container">
             <div className="row">
                 <div className="col-3">
-                    <h3><Link to='/pay'> Nhân viên</Link></h3>
+                <p className="pay"><Link to='/stafflist'>Nhân viên </Link></p>
                     <hr />
                 </div>
                 <div className="col-9">

@@ -8,11 +8,11 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 
 ///////////////hiển thị //////////
 const Department = ({ departments, staffs }) => {
-    let { id } = useParams();
+    let {id } = useParams();
         console.log('a', staffs)
 
     const RenderDepartMent = ({ department }) => {
-        const staff = staffs.filter((staff) => staff.departments.id == departments.id)
+        const staff = staffs.filter((staff) => staff.department.id == department.id)
         console.log(staff)
         return (
             <Card >

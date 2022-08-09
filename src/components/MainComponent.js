@@ -25,7 +25,7 @@ class Main extends Component {
             <div>
                 <Switch  >
                     <Route path="/stafflist" component={() => {return <Menu staffs={this.state.staffs}/> }}/>
-                    <Route path='/department'  component = {() => {return <Depart departments={this.state.departments} />  }} /> 
+                    <Route path='/department'  component = {() => {return <Depart departments={this.state.departments} staffs={this.state.staffs} />  }} /> 
                     <Route path='/payroll' component={() => { return <Salary staffs={this.state.staffs} /> }} />
                     <Route path='/detail/:id' component={() => { return <Detail staffs={this.state.staffs} /> }} />
                     <Redirect to='/home' />

@@ -18,7 +18,7 @@ const Department = ({ departments, staffs }) => {
             <Card >
                 <h3 >{department.name}</h3>
                 <CardBody >
-                    <CardText> Số lượng nhân viên: {department.numberOfStaff}</CardText>
+                    <CardText> Số lượng nhân viên: {staff.length}</CardText>
                 </CardBody>
             </Card>
         )

@@ -11,7 +11,7 @@ class ModalStaff extends React.Component {
         return (
             <FormGroup>
                 <Col md={{ size: 4, offset: 4 }}>
-                    <Input type='search' placeholder='tim nhan vien' onChange={(e) => this.setState({ search: e.target.value })}
+                    <Input type='search' placeholder='Tìm nhân viên' onChange={(e) => this.setState({ search: e.target.value })}
                     />
                 </Col>
                 <Button color='primary' md={{ size: 1 }} forHtml='Tìm'

@@ -9,6 +9,7 @@ const Menu = ({ staffs, handleAddStaff }) => {
 
     let history = useHistory();
 
+    ///////// hàm hiển thị 
     const RenderMenuItem = ({ staff, onClick }) => {
         return (
             <Card >
@@ -22,14 +23,17 @@ const Menu = ({ staffs, handleAddStaff }) => {
             </Card>
         )
     }
-    const searchStaff = (staffs) => {
-        const filterStaffs = staffs.filter((staff) => staff.name.includes(staffs))
+
+    ////////hàm tìm kiếm nhân viên /////////
+    const searchStaff = (key) => {
+        const filterStaffs = staffs.filter((staff) => staff.name.includes(key))
         setFilterStaffs(filterStaffs)
         console.log(filterStaffs)
     }
 
+    ////////////hàm khai báo ////////
     const menu = filterStaffs.map((staff) => {
-        
+        console.log('a', filterStaffs)
         return (
             <div key={staff.id} className='col-sm-4 col-xs-6 col-md-2 mt-4 '>
 

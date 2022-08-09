@@ -35,6 +35,9 @@ const Department = ({ departments, staffs }) => {
 
     return (
         <div className="container">
+             <div className="row">
+                    <p className="pay"><Link to='/stafflist'>Nhân viên </Link>/ Phòng ban</p>
+                </div>
             <div className="row">
                 {departmentsList}
             </div>

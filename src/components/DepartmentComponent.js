@@ -1,9 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-
-
-
+import { Link } from "react-router-dom";
 
 
 ///////////////hiển thị //////////

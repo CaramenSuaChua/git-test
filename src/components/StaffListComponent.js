@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import ModalStaff from "./ModalStaff";
-
+import { Link } from "react-router-dom";
 ///////////////hiển thị //////////
 const Menu = ({ staffs, handleAddStaff }) => {
     const [filterStaffs, setFilterStaffs] = useState(staffs)
@@ -48,10 +48,10 @@ const Menu = ({ staffs, handleAddStaff }) => {
         <div className="container">
             <div className="row">
                 <div className="col-3">
-                    <h3>Nhân viên</h3>
+                    <h3><Link to='/pay'> Nhân viên</Link></h3>
                     <hr />
                 </div>
-                <div className="col-8">
+                <div className="col-9">
                     <ModalStaff searchStaff={searchStaff}   />
                 </div>
             </div>

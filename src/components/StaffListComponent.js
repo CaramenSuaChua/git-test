@@ -1,13 +1,12 @@
 import React, { Component, useState } from "react";
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { useHistory } from "react-router-dom";
-
+import ModalStaff from "./ModalStaff";
 
 ///////////////hiển thị //////////
-const Menu = ({ staffs }) => {
-    // lúc đầu e cũng k để cái on click ở đấy 
-    // xog a bảo lấy giá trị id nên e thêm vào 
+const Menu = ({ staffs, handleAddStaff }) => {
+    const [filterStaffs, setFilterStaffs] = useState(staffs)
+
     let history = useHistory();
 
     const RenderMenuItem = ({ staff, onClick }) => {
@@ -23,8 +22,14 @@ const Menu = ({ staffs }) => {
             </Card>
         )
     }
+    const searchStaff = (staffs) => {
+        const filterStaffs = staffs.filter((staff) => staff.name.includes(staffs))
+        setFilterStaffs(filterStaffs)
+        console.log(filterStaffs)
+    }
 
-    const menu = staffs.map((staff) => {
+    const menu = filterStaffs.map((staff) => {
+        
         return (
             <div key={staff.id} className='col-sm-4 col-xs-6 col-md-2 mt-4 '>
 
@@ -38,11 +43,13 @@ const Menu = ({ staffs }) => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-12">
+                <div className="col-3">
                     <h3>Nhân viên</h3>
                     <hr />
                 </div>
-
+                <div className="col-8">
+                    <ModalStaff searchStaff={searchStaff}   />
+                </div>
             </div>
             <div className="row">
                 {menu}

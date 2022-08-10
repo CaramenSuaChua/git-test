@@ -1,75 +1,129 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
-
-export const addComment = (comment) => ({
-    type: ActionTypes.ADD_COMMENT,
-    payload: comment,
-})
-
-export const postComment = (staffId, rating, author, comment) => (dispatch) => {
-    const newComment = {
-        staffId: staffId,
-        rating: rating,
-        author: author,
-        comment: comment,
-
-    }
-
-    newComment.date = new Date().toISOString();
-
-    return fetch(baseUrl + 'comment', {
-        method: 'POST',
-        body: JSON.stringify(newComment),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'same-origin'
+///////////////update
+export const updateStaff = (staff) => (dispatch) => {
+    return fetch (baseUrl + 'staffs',{
+        method:'PATCH',
+        // body:JSON.stringify(staff),
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
     })
-        .then(response => {
-            if (response.ok) {
-                return response;
-            }
-            else {
-                var error = new Error('Error' + response.status + ':' + response.statusText)
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
+    .then((response) => {
+        if(response.ok)
+            return response
+        else {
+            var error = new Error('Error' + response.status +':' + response.statusText)
+            error.response = response;
+            throw error
+        }
+    },
+    (error) => {
+        var errMess = new Error(error.message);
+        throw errMess;
+    })
+    .then((response) => response.json())
+    .then((response) => {dispatch(addStaffs(response));
+        window.location.replace("/staff");})
+    .catch((error) => { 
+        console.log("ERROR MESSAGE " + error.message);
+        alert("Your POST newstaff could not be posted\nError: " + error.message);
+    })
+}
+
+///////////xóa nhân viên 
+export const deleteStaff = (id) => (dispatch) =>{
+    console.log('base', baseUrl + 'staffs/' + id)
+    return (
+        fetch(baseUrl + 'staffs/' + id, {
+        method:"DELETE",
+        // body: JSON.stringify(staff),
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+    })
+    .then((response) => {
+        if(response.ok)
+            return response
+        else {
+            var error = new Error('Error' + response.status +':' + response.statusText)
+            error.response = response;
+            throw error
+        }
+    }, 
+    (error) => {
+        var errMess = new Error(error.message)
+        throw errMess
+    })
+    .then((response) => response.json())
+    .then((response) => {dispatch(addStaffs(response));
+        window.location.replace("/staff");})
+    .catch((error) => { 
+        console.log("ERROR MESSAGE " + error.message);
+        alert("Your POST newstaff could not be posted\nError: " + error.message);
+    })
+    )
+}
+
+/////////////////thêm nhân viên
+export const postStaff = (staff) => (dispatch) => {
+    console.log('asssssssssssssssss', staff)
+    return fetch(baseUrl + "staffs", {
+        method: "POST",
+        body: JSON.stringify(staff),
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin", //gửi thông tin đăng nhập nếu URL yêu cầu có cùng nguồn gốc với tập lệnh gọi
+    })
+        .then(
+            (response) => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error " + response.status + " :" + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            (error) => {
                 var errmess = new Error(error.message);
                 throw errmess;
-            })
-        .then(response => response.json())
-        .then(response => dispatch(addComment(response)))
-        .catch(error => {
-            console.log('POST comments', error.message);
-            alert('Your comment could not be posted\n Error: ' + error.message)
+            }
+        )
+        .then((response) => response.json())
+        .then((response) => dispatch(addStaffs(response)))
+        .catch((error) => {
+            console.log("ERROR MESSAGE " + error.message);
+            alert("Your POST newstaff could not be posted\nError: " + error.message);
         });
 };
 
-export const fetchStaffs = () => (dispatch) => {
-    dispatch(staffsLoading(true))
+////////////hiển thị nhân viên
+export const fetchStaffs = (staff) => (dispatch) => {
+    dispatch(staffsLoading(true));
 
-    return fetch(baseUrl + 'staffs')
-        .then(response => {
-            if (response.ok) {
-                return response;
+    return fetch(baseUrl  + "staffs" )
+        .then(
+            (response) => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    var error = new Error(
+                        "Error" + response.status + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            (error) => {
+                var errmess = new Error(error.message);
+                throw errmess;
             }
-            else {
-                var error = new Error('Error' + response.status + ':' + response.statusText)
-                error.response = response;
-                throw error;
-            }
-        },
-            error => {
-                var errMess = new Error(error.message)
-                throw errMess;
-            })
-        .then(response => response.json())
-        .then(staffs => dispatch(addStaffs(staffs)))
-        .catch(error => dispatch(staffsFailed(error.message)))
-}
+        )
+        .then((response) => response.json())
+        .then((response) => dispatch(addStaffs(response)))
+        .catch((error) => dispatch(staffsFailed(error.message)));
+};
 
 export const staffsLoading = () => ({
     type: ActionTypes.STAFFS_LOADING
@@ -81,14 +135,17 @@ export const staffsFailed = (errMess) => ({
 })
 
 export const addStaffs = (staffs) => ({
+    
     type: ActionTypes.ADD_STAFFS,
     payload: staffs,
+
 })
 
+//////////////hiển thị phòng ban
 export const fetchDeparts = () => (dispatch) => {
     dispatch(departsLoading(true))
 
-    return fetch(baseUrl + 'departs')
+    return fetch(baseUrl + 'departments')
         .then(response => {
             if (response.ok) {
                 return response;
@@ -104,7 +161,7 @@ export const fetchDeparts = () => (dispatch) => {
                 throw errMess
             })
         .then(response => response.json())
-        .then(departs => dispatch(addDeparts(departs)))
+        .then(departs => { return dispatch(addDeparts(departs)) })
         .catch(error => dispatch(departsFailed(error.message)))
 }
 
@@ -117,11 +174,13 @@ export const departsFailed = (errMess) => ({
     payload: errMess
 })
 
-export const addDeparts = (departs) => ({
+export const addDeparts = (departments) => ({
     type: ActionTypes.ADD_DEPARTS,
-    payload: departs,
+    payload: departments,
 })
 
+
+//////////////////hiển thị bảng lương
 export const fetchSalary = () => (dispatch) => {
     dispatch(salarysLoading(true))
 

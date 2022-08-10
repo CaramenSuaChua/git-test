@@ -57,3 +57,13 @@ address{
   padding:15px;
   margin-left :2%;
 }
+
+.delete {
+  color: blue;
+  background-color: red;
+}
+
+.update {
+  color: blue;
+  background-color: yellow;
+}

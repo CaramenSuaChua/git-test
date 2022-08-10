@@ -11,9 +11,9 @@ class ModalAddStaff extends React.Component {
             doB: '',
             startDate: '',
             department: '',
-            salaryScale: 1,
-            leaveTime: 0,
-            overTime: 0,
+            salaryScale: '',
+            leaveTime: '',
+            overTime: '',
             modal: false,
             search: '',
             touched: {
@@ -50,19 +50,29 @@ class ModalAddStaff extends React.Component {
         console.log(this.state.start)
         console.log(target.name)
     }
+    // sự kiện handleSubmit khi người dùng thêm nhân viên
 
-    handleSubmit(event) {
-        let item = {
+    handleSubmit(value) {
+        value.preventDefault()
+        console.log('value', value)
+        const newStaff = {
+            id: this.props.staffs.length,
             name: this.state.name,
             doB: this.state.doB,
+            departmentId: this.state.departmentId,
+            salaryScale: this.state.salaryScale,
             startDate: this.state.startDate,
-            department: this.state.department,
-        }
-        // if(!this.validate()){
-        this.props.onClickSubmit(item) 
-    // }
-        event.preventDefault()
+            annualLeave: this.state.annualLeave,
+            overTime: this.state.overTime,
+            image: "/assets/images/alberto.png",
+        };
 
+        // Đièu kiện người dùng nhập đầy đủ các trường
+        if (newStaff.name === "") {
+            alert("Vui lòng nhập các trường");
+        } else {
+            this.props.postStaff(newStaff);
+        }
     }
 
     handleBlur = (field) => (event) => {
@@ -114,7 +124,7 @@ class ModalAddStaff extends React.Component {
                                             valid={errors.name === ''}
                                             invalid={errors.name !== ''}
                                             onChange={this.handleInputChange}
-                                            onBlur={this.handleBlur('name')}    />
+                                            onBlur={this.handleBlur('name')} />
                                         <FormFeedback>{errors.name}</FormFeedback>
                                     </Col>
                                 </FormGroup>
@@ -139,13 +149,14 @@ class ModalAddStaff extends React.Component {
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('startDate')} />
                                         <FormFeedback>{errors.startDate}</FormFeedback>
-                                    </Col>  
+                                    </Col>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label md={3} htmlFor='department'>Phòng ban </Label>
                                     <Col md={9}>
                                         <Input type='select' name='department' id='departmnet'
                                             onChange={this.handleInputChange}
+                                            onBlur={this.handleBlur('department')}
                                             value={this.state.department} >
                                             <option>Sale</option>
                                             <option>HR</option>
@@ -156,35 +167,35 @@ class ModalAddStaff extends React.Component {
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row>
-                                    <Label htmlFor='Leave' md={3}>Hệ số lương </Label>
+                                    <Label htmlFor='salaryScale' md={3}>Hệ số lương </Label>
                                     <Col md={9}>
-                                        <Input type='scale' value={this.state.salaryScale}
+                                        <Input type='number' name='salaryScale' value={this.state.salaryScale}
                                             // valid={errors.salaryScale === ''}
                                             //  invalid={errors.salaryScale !== ''}
                                             onChange={this.handleInputChange}
-                                            onBlur={this.handleBlur} />
+                                            onBlur={this.handleBlur('salaryScale')} />
                                         <FormFeedback>{errors.salaryScale}</FormFeedback>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label htmlFor='Leave' md={3}>Số ngày nghỉ còn lại </Label>
                                     <Col md={9}>
-                                        <Input md={1} type='leave' value={this.state.leaveTime}
+                                        <Input md={1} type='number' name='leaveTime' id='leave' value={this.state.leaveTime}
                                             // valid={errors.name === ''}
                                             // invalid={errors.name !== ''}
                                             onChange={this.handleInputChange}
-                                            onBlur={this.handleBlur} />
+                                            onBlur={this.handleBlur('leaveTime')} />
                                         <FormFeedback>{errors.leaveTime}</FormFeedback>
                                     </Col>
                                 </FormGroup>
                                 <FormGroup row>
                                     <Label htmlFor='Over' md={3}>Số ngày đã làm thêm  </Label>
                                     <Col md={9}>
-                                        <Input type='over' value={this.state.overTime}
+                                        <Input type='number' name='overTime' value={this.state.overTime}
                                             // valid={errors.name === ''}
                                             // invalid={errors.name !== ''}
                                             onChange={this.handleInputChange}
-                                            onBlur={this.handleBlur} />
+                                            onBlur={this.handleBlur('overTime')} />
                                         <FormFeedback>{errors.overTime}</FormFeedback>
                                     </Col>
                                 </FormGroup>
@@ -207,7 +218,8 @@ class ModalAddStaff extends React.Component {
                     />
                 </Col>
                 <Button color='primary' md={{ size: 1 }} forHtml='Tìm'
-                    onClick={() => this.props.handleSearch(this.state.search)}>Tìm {' '}</Button>
+                    onClick={() => this.props.searchStaff(this.state.search)}>Tìm {' '}</Button>
+                
             </FormGroup>
         );
     }

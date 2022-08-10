@@ -6,8 +6,6 @@ import { FadeTransform } from 'react-animation-components';
 
 
 function RenderCard({ item, isLoading, errMess }) {
-    console.log(item)
-    console.log(isLoading)
     if (isLoading) {
         return (
             <Loading />
@@ -37,6 +35,7 @@ function RenderCard({ item, isLoading, errMess }) {
 }
 
 function Home(props) {
+console.log('Home: '. props)
     return (
         <div className="container">
             <div className="row align-items-start">

@@ -75,6 +75,23 @@ class ModalAddStaff extends React.Component {
         }
     }
 
+    handleUpdateStaff(values) {
+        console.log('values', values)
+        const updateStaff = {
+            id: this.props.staffs.id,
+            name: this.state.name,
+            doB: this.state.doB,
+            startDate: this.state.startDate,
+            departmentId: this.state.departmentId,
+            salaryScale: this.state.salaryScale,
+            annualLeave: this.state.annualLeave,
+            overTime: this.state.overTime,
+        };
+
+        this.props.updateStaff(updateStaff);
+        this.props.toggleModal(updateStaff);
+    };
+
     handleBlur = (field) => (event) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
@@ -154,7 +171,8 @@ class ModalAddStaff extends React.Component {
                                 <FormGroup row>
                                     <Label md={3} htmlFor='department'>Phòng ban </Label>
                                     <Col md={9}>
-                                        <Input type='select' name='department' id='departmnet'
+                                        <Input type='select' name='department' id='departmnet' 
+                                        className='department'
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('department')}
                                             value={this.state.department} >
@@ -219,7 +237,9 @@ class ModalAddStaff extends React.Component {
                 </Col>
                 <Button color='primary' md={{ size: 1 }} forHtml='Tìm'
                     onClick={() => this.props.searchStaff(this.state.search)}>Tìm {' '}</Button>
-                
+                {/* <Button type="button" color="info" outline onClick={this.toggleModal}>
+                    Cập nhật thông tin
+                </Button> */}
             </FormGroup>
         );
     }

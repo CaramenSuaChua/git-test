@@ -17,14 +17,14 @@ const DetailDepart = ({ departs, staffs }) => {
     console.log('depart', depart)
     console.log('staffsâ', staff)
 
-    if (depart.isLoading) {
+    if (depart?.isLoading) {
         <div className="container">
             <div className="row">
                 <Loading />
             </div>
         </div>
     }
-    else if (depart.errMess) {
+    else if (depart?.errMess) {
         <div className="container">
             <div className="row">
                 <h4> {depart.errMess} </h4>
@@ -36,7 +36,7 @@ const DetailDepart = ({ departs, staffs }) => {
         <CardBody className="container">
             <div className="row">
                 <div className="col-12">
-                    <h3><Link to='/department'>Phòng Ban </Link> / {depart.name}</h3>
+                    <h3><Link to='/department'>Phòng Ban </Link> / {depart?.name}</h3>
 
                     <hr />
                 </div>
@@ -54,7 +54,7 @@ const DetailDepart = ({ departs, staffs }) => {
                             <CardText> Ngày vào công ty:{dateFormat(item.startDate, "dd/mm/yyyy")} </CardText>
                         </div>
                         <div className="col-md-4 col-sm-4 col-xs-12 mt-5">
-                            <CardText> Phòng ban: {depart.name } </CardText>
+                            <CardText> Phòng ban: {depart?.name } </CardText>
                             <CardText> Số ngày nghỉ còn lại: {item.annualLeave} </CardText>
                             <CardText>  Số ngày đã làm thêm: {item.overTime}</CardText>
                     

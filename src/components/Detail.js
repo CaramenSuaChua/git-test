@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { CardBody, CardText, CardTitle, CardImg } from "reactstrap";
 import dateFormat from 'dateformat';
 import { Loading } from "./LoadingComponent";
-import { deleteStaff, updateStaff } from "../redux/ActionCreator";
+import { deleteStaff, updateStaffs } from "../redux/ActionCreator";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
@@ -24,9 +24,10 @@ const Detail = ({ staffs, departs }) => {
     const deleteStaffs = () => {
         dispatch(deleteStaff(id));
     }
+
     /////////// hàm update thông tin
-    const updateStaffs = (newStaff) =>{
-        dispatch(updateStaff(newStaff))
+    const handleUpdateStaffs = (updateStaff) =>{
+        dispatch(updateStaffs(updateStaff))
     }
 
     if (staff?.isLoading) {
@@ -60,7 +61,8 @@ const Detail = ({ staffs, departs }) => {
                     onClick={deleteStaffs}> Delete {' '}</Button>
 
                      <Button color='primary' className="update" md={{ size: 5, offset:5 }} forHtml='delete'
-                    onClick={updateStaffs}> Edit {' '}</Button>
+                    onClick={handleUpdateStaffs}> Edit {'  '}</Button>
+                    
                     </div>
                     <div className="col-md-9 col-sm-8 col-xs-12">
                         <CardTitle> Họ và tên: {staff?.name} </CardTitle>

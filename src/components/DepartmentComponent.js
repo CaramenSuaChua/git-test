@@ -36,24 +36,24 @@ const Department = ({ departs, staffs }) => {
         )
     })
 
-    // if (departs.isLoading) {
-    //     return (
-    //         <div className="container">
-    //             <div className="row">
-    //                 <Loading />
-    //             </div>
-    //         </div>
-    //     )
-    // }
-    // else if (departs.errMess) {
-    //     return (
-    //         <div className="container">
-    //             <div className="row">
-    //                 <h4>{departs.errMess}</h4>
-    //             </div>
-    //         </div>
-    //     )
-    // }
+    if (departs.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
+    else if (departs.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{departs.errMess}</h4>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="container">

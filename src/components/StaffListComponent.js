@@ -81,7 +81,7 @@ const Menu = ({ staffs, postStaff }) => {
 
                     <Col md={{ size: 9 }}>
                         <ModalAddStaff staffs={filterStaffs} postStaff={postStaff} 
-                        searchStaff={searchStaff}  />
+                        searchStaff={searchStaff}   />
                     </Col>
                 </FormGroup>
                 <div className="row">

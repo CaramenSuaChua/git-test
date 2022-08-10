@@ -2,7 +2,7 @@ import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
 ///////////////update
-export const updateStaff = (staff) => (dispatch) => {
+export const updateStaffs = (staff) => (dispatch) => {
     return fetch (baseUrl + 'staffs',{
         method:'PATCH',
         // body:JSON.stringify(staff),

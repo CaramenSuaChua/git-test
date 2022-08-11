@@ -7,17 +7,21 @@ import { Loading } from "./LoadingComponent";
 import { deleteStaff, updateStaffs } from "../redux/ActionCreator";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import ModalEditStaff from './ModalEditStaff'
 
+////////////khai báo hàm thông tin chi tiết nhân viên 
 const Detail = ({ staffs, departs }) => {
     let { id } = useParams();
     let { name } = useParams();
     console.log('id', id);
     console.log('staffs', staffs)
     console.log('asa', departs)
+    //////////lọc giá trị nhân viên theo id 
     const staff = staffs.filter((staff) => staff.id == id * 1)[0];
+    /////////lọc giá trị phòng ban của nhân viên 
     const depart = departs.filter((depart) => depart?.id === staff.departmentId)[0];
     console.log('asaaaa', staff)
-    console.log('b', depart)
+    // console.log('b', depart)
     const dispatch = useDispatch();
 
     /////////// hàm xóa nhân viên ///////////////
@@ -26,10 +30,11 @@ const Detail = ({ staffs, departs }) => {
     }
 
     /////////// hàm update thông tin
-    const handleUpdateStaffs = (updateStaff) =>{
+    const handleUpdateStaffs = (updateStaff) => {
         dispatch(updateStaffs(updateStaff))
     }
 
+    //////////nếu staff có giá trị thì loading
     if (staff?.isLoading) {
         <div className="container">
             <div className="row">
@@ -37,6 +42,7 @@ const Detail = ({ staffs, departs }) => {
             </div>
         </div>
     }
+    /////////nếu staff có giá trị thì báo fail
     else if (staff?.errMess) {
         <div className="container">
             <div className="row">
@@ -58,35 +64,25 @@ const Detail = ({ staffs, departs }) => {
                     <div className="col-md-3 col-sm-4 col-xs-12  ">
                         <CardImg className='picture' src={staff?.image} />
                         <Button color='primary' className="delete" md={{ size: 1 }} forHtml='delete'
-                    onClick={deleteStaffs}> Delete {' '}</Button>
+                            onClick={deleteStaffs}> Delete {' '}</Button>
+                        
+                        <ModalEditStaff handleUpdateStaffs={handleUpdateStaffs} /> 
 
-                     <Button color='primary' className="update" md={{ size: 5, offset:5 }} forHtml='delete'
-                    onClick={handleUpdateStaffs}> Edit {'  '}</Button>
-                    
                     </div>
                     <div className="col-md-9 col-sm-8 col-xs-12">
                         <CardTitle> Họ và tên: {staff?.name} </CardTitle>
                         <CardText> Ngày sinh: {dateFormat(staff?.doB, "dd/mm/yyyy")} </CardText>
                         <CardText> Ngày vào công ty:{dateFormat(staff?.startDate, "dd/mm/yyyy")} </CardText>
-{/* 
-                        {depart.map((item) => {
-                            return (
-                                <CardText> Phòng ban: {item.departmentId} </CardText>
-
-                            )
-                        })} */}
                         <CardText> Phòng ban: {depart?.name} </CardText>
-
-
                         <CardText> Số ngày nghỉ còn lại: {staff?.overTime} </CardText>
                         <CardText> Hệ số lương : {staff?.salaryScale} </CardText>
                         <CardText>  Số ngày đã làm thêm: {staff?.overTime}</CardText>
                     </div>
-                   
+
                 </div>
 
-               
-                
+
+
 
             </CardBody>
         )

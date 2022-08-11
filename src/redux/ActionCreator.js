@@ -3,9 +3,10 @@ import { baseUrl } from '../shared/baseUrl';
 
 ///////////////update
 export const updateStaffs = (staff) => (dispatch) => {
+    console.log('ấ', staff)
     return fetch (baseUrl + 'staffs',{
         method:'PATCH',
-        // body:JSON.stringify(staff),
+        body:JSON.stringify(staff),
         headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
     })
@@ -27,7 +28,7 @@ export const updateStaffs = (staff) => (dispatch) => {
         window.location.replace("/staff");})
     .catch((error) => { 
         console.log("ERROR MESSAGE " + error.message);
-        alert("Your POST newstaff could not be posted\nError: " + error.message);
+        alert("Your Update could not be updated\nError: " + error.message);
     })
 }
 

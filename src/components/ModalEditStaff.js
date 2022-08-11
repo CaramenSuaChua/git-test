@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, FormFeedback, Form } from 'reactstrap';
 import { Input, Col, FormGroup, Button, Label } from 'reactstrap';
 
+
 class ModalAddStaff extends React.Component {
     constructor(props) {
         super(props);
@@ -26,8 +27,9 @@ class ModalAddStaff extends React.Component {
         console.log(this.state.doB)
         this.toggleModal = this.toggleModal.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this)
+       
         this.handleBlur = this.handleBlur.bind(this)
+        
     }
 
     toggleModal() {
@@ -36,6 +38,7 @@ class ModalAddStaff extends React.Component {
         });
     }
 
+    /////////////thay đổi 
     handleInputChange(e) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -50,32 +53,34 @@ class ModalAddStaff extends React.Component {
         console.log(this.state.start)
         console.log(target.name)
     }
+
     // sự kiện handleSubmit khi người dùng thêm nhân viên
 
-    handleSubmit(value) {
-        value.preventDefault()
-        console.log('value', value)
-        const newStaff = {
-            id: this.props.staffs.length,
-            name: this.state.name,
-            doB: this.state.doB,
-            departmentId: this.state.departmentId,
-            salaryScale: this.state.salaryScale,
-            startDate: this.state.startDate,
-            annualLeave: this.state.annualLeave,
-            overTime: this.state.overTime,
-            image: "/assets/images/alberto.png",
-        };
+    // handleSubmit(value) {
+    //     value.preventDefault()
+    //     console.log('value', value)
+    //     const newStaff = {
+    //         id: this.props.staffs.length,
+    //         name: this.state.name,
+    //         doB: this.state.doB,
+    //         departmentId: this.state.departmentId,
+    //         salaryScale: this.state.salaryScale,
+    //         startDate: this.state.startDate,
+    //         annualLeave: this.state.annualLeave,
+    //         overTime: this.state.overTime,
+    //         image: "/assets/images/alberto.png",
+    //     };
 
-        // Đièu kiện người dùng nhập đầy đủ các trường
-        if (newStaff.name === "") {
-            alert("Vui lòng nhập các trường");
-        } else {
-            this.props.postStaff(newStaff);
-        }
-    }
+    //     // Đièu kiện người dùng nhập đầy đủ các trường
+    //     if (newStaff.name === "") {
+    //         alert("Vui lòng nhập các trường");
+    //     } else {
+    //         this.props.postStaff(newStaff);
+    //     }
+    // }
 
-    handleUpdateStaff(values) {
+    ///////////sự kiện handleUpdate khi người dùng sửa thông tin nhân viên
+    handleUpdateStaffs(values) {
         console.log('values', values)
         const updateStaff = {
             id: this.props.staffs.id,
@@ -98,6 +103,7 @@ class ModalAddStaff extends React.Component {
         });
     }
 
+    /////////kiểm tra dữ liệu 
     validate(name, doB, startDate, department) {
         const errors = {
             name: '',
@@ -119,18 +125,16 @@ class ModalAddStaff extends React.Component {
     render() {
         const errors = this.validate(this.state.name, this.state.doB,
             this.state.startDate, this.state.department)
+
         return (
-            <FormGroup row>
-                <Col md={5}>
-                    <Button color='danger' onClick={this.toggleModal}>
-                        +
-                    </Button>
+            <FormGroup  row >
+                <Col md={5} row>
                     <Modal
                         isOpen={this.state.modal}
                         toggle={this.toggleModal}
                         className={this.props.className}>
                         <ModalHeader toggle={this.toggleModal} >
-                            Thành viên
+                            Thay đổi thông tin
                         </ModalHeader>
                         <Form onSubmit={this.handleSubmit}>
                             <ModalBody>
@@ -149,8 +153,6 @@ class ModalAddStaff extends React.Component {
                                     <Label htmlFor='dob' md={3}>Ngày sinh</Label>
                                     <Col md={9}>
                                         <Input type='date' name='doB' id='date' value={this.state.doB}
-                                            // valid={errors.doB === ''}
-                                            // invalid={errors.doB !== ''}
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('doB')} />
                                         <FormFeedback>{errors.doB}</FormFeedback>
@@ -161,8 +163,6 @@ class ModalAddStaff extends React.Component {
                                     <Col md={9}>
                                         <Input type='date' name='startDate' id='start'
                                             value={this.state.startDate}
-                                            // valid={errors.startDate === ''}
-                                            // invalid={errors.startDate !== ''}
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('startDate')} />
                                         <FormFeedback>{errors.startDate}</FormFeedback>
@@ -188,8 +188,6 @@ class ModalAddStaff extends React.Component {
                                     <Label htmlFor='salaryScale' md={3}>Hệ số lương </Label>
                                     <Col md={9}>
                                         <Input type='number' name='salaryScale' value={this.state.salaryScale}
-                                            // valid={errors.salaryScale === ''}
-                                            //  invalid={errors.salaryScale !== ''}
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('salaryScale')} />
                                         <FormFeedback>{errors.salaryScale}</FormFeedback>
@@ -199,8 +197,6 @@ class ModalAddStaff extends React.Component {
                                     <Label htmlFor='Leave' md={3}>Số ngày nghỉ còn lại </Label>
                                     <Col md={9}>
                                         <Input md={1} type='number' name='leaveTime' id='leave' value={this.state.leaveTime}
-                                            // valid={errors.name === ''}
-                                            // invalid={errors.name !== ''}
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('leaveTime')} />
                                         <FormFeedback>{errors.leaveTime}</FormFeedback>
@@ -210,8 +206,6 @@ class ModalAddStaff extends React.Component {
                                     <Label htmlFor='Over' md={3}>Số ngày đã làm thêm  </Label>
                                     <Col md={9}>
                                         <Input type='number' name='overTime' value={this.state.overTime}
-                                            // valid={errors.name === ''}
-                                            // invalid={errors.name !== ''}
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('overTime')} />
                                         <FormFeedback>{errors.overTime}</FormFeedback>
@@ -221,7 +215,7 @@ class ModalAddStaff extends React.Component {
                             <ModalFooter >
                                 <Button color='primary' type='submit'
                                 >
-                                    Thêm nhân viên
+                                    Cập nhật thông tin
                                 </Button>{' '}
                                 <Button color='danger' onClick={this.toggleModal}>
                                     Cancel
@@ -231,15 +225,9 @@ class ModalAddStaff extends React.Component {
 
                     </Modal>
                 </Col>
-                <Col md={{ size: 5, offset: 4 }}>
-                    <Input type='search' onChange={(e) => this.setState({ search: e.target.value })}
-                    />
-                </Col>
-                <Button color='primary' md={{ size: 1 }} forHtml='Tìm'
-                    onClick={() => this.props.searchStaff(this.state.search)}>Tìm {' '}</Button>
-                {/* <Button type="button" color="info" outline onClick={this.toggleModal}>
+                <Button type="button" color="info" outline onClick={this.toggleModal}>
                     Cập nhật thông tin
-                </Button> */}
+                </Button>
             </FormGroup>
         );
     }

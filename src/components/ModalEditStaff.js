@@ -27,9 +27,8 @@ class ModalAddStaff extends React.Component {
         console.log(this.state.doB)
         this.toggleModal = this.toggleModal.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
-       
         this.handleBlur = this.handleBlur.bind(this)
-        
+        this.handleUpdateStaffs = this.handleUpdateStaffs.bind(this)
     }
 
     toggleModal() {
@@ -49,41 +48,44 @@ class ModalAddStaff extends React.Component {
             [name]: value,
         })
 
-        console.log(this.state.date)
-        console.log(this.state.start)
-        console.log(target.name)
+        //     console.log(this.state.date)
+        //     console.log(this.state.start)
+        //     console.log(target.name)
+        // }
+
+        // sự kiện handleSubmit khi người dùng thêm nhân viên
+
+        // handleSubmit(value) {
+        //     value.preventDefault()
+        //     console.log('value', value)
+        //     const newStaff = {
+        //         id: this.props.staffs.length,
+        //         name: this.state.name,
+        //         doB: this.state.doB,
+        //         departmentId: this.state.departmentId,
+        //         salaryScale: this.state.salaryScale,
+        //         startDate: this.state.startDate,
+        //         annualLeave: this.state.annualLeave,
+        //         overTime: this.state.overTime,
+        //         image: "/assets/images/alberto.png",
+        //     };
+
+        //     // Đièu kiện người dùng nhập đầy đủ các trường
+        //     if (newStaff.name === "") {
+        //         alert("Vui lòng nhập các trường");
+        //     } else {
+        //         this.props.postStaff(newStaff);
+        //     }
+
     }
-
-    // sự kiện handleSubmit khi người dùng thêm nhân viên
-
-    // handleSubmit(value) {
-    //     value.preventDefault()
-    //     console.log('value', value)
-    //     const newStaff = {
-    //         id: this.props.staffs.length,
-    //         name: this.state.name,
-    //         doB: this.state.doB,
-    //         departmentId: this.state.departmentId,
-    //         salaryScale: this.state.salaryScale,
-    //         startDate: this.state.startDate,
-    //         annualLeave: this.state.annualLeave,
-    //         overTime: this.state.overTime,
-    //         image: "/assets/images/alberto.png",
-    //     };
-
-    //     // Đièu kiện người dùng nhập đầy đủ các trường
-    //     if (newStaff.name === "") {
-    //         alert("Vui lòng nhập các trường");
-    //     } else {
-    //         this.props.postStaff(newStaff);
-    //     }
-    // }
 
     ///////////sự kiện handleUpdate khi người dùng sửa thông tin nhân viên
     handleUpdateStaffs(values) {
-        console.log('values', values)
+        values.preventDefault();
+
+        console.log('values', this.props)
         const updateStaff = {
-            id: this.props.staffs.id,
+            id: this.props.staff.id,
             name: this.state.name,
             doB: this.state.doB,
             startDate: this.state.startDate,
@@ -93,9 +95,16 @@ class ModalAddStaff extends React.Component {
             overTime: this.state.overTime,
         };
 
-        this.props.updateStaff(updateStaff);
+        this.props.handleUpdateStaffs(updateStaff);
+
         this.toggleModal(updateStaff);
     };
+
+    // handleBlur = (field) => (event) => {
+    //     this.setState({
+    //         touched: { ...this.state.touched, [field]: true }
+    //     });
+    // }
 
     handleBlur = (field) => (event) => {
         this.setState({
@@ -127,7 +136,7 @@ class ModalAddStaff extends React.Component {
             this.state.startDate, this.state.department)
 
         return (
-            <FormGroup  row >
+            <FormGroup row >
                 <Col md={5} row>
                     <Modal
                         isOpen={this.state.modal}
@@ -136,7 +145,7 @@ class ModalAddStaff extends React.Component {
                         <ModalHeader toggle={this.toggleModal} >
                             Thay đổi thông tin
                         </ModalHeader>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleUpdateStaffs}>
                             <ModalBody>
                                 <FormGroup row >
                                     <Label htmlFor='name' md={3}> Tên</Label>
@@ -171,16 +180,16 @@ class ModalAddStaff extends React.Component {
                                 <FormGroup row>
                                     <Label md={3} htmlFor='department'>Phòng ban </Label>
                                     <Col md={9}>
-                                        <Input type='select' name='department' id='departmnet' 
-                                        className='department'
+                                        <Input type='select' name='departmentId' id='departmnetId'
+                                            className='department'
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('department')}
                                             value={this.state.department} >
-                                            <option>Sale</option>
-                                            <option>HR</option>
-                                            <option>Marketing</option>
-                                            <option>IT </option>
-                                            <option>Finance</option>
+                                            <option value='Dept01'>Sale</option>
+                                            <option value='Dept02'>HR</option>
+                                            <option value='Dept03'>Marketing</option>
+                                            <option value='Dept04'>IT </option>
+                                            <option value='Dept05'>Finance</option>
                                         </Input>
                                     </Col>
                                 </FormGroup>
@@ -232,5 +241,6 @@ class ModalAddStaff extends React.Component {
         );
     }
 }
+
 
 export default ModalAddStaff;

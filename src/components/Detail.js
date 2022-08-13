@@ -19,7 +19,7 @@ const Detail = ({ staffs, departs }) => {
     //////////lọc giá trị nhân viên theo id 
     const staff = staffs.filter((staff) => staff.id == id * 1)[0];
     /////////lọc giá trị phòng ban của nhân viên 
-    const depart = departs.filter((depart) => depart?.id === staff.departmentId)[0];
+    const depart = departs.filter((depart) => depart.id === staff.departmentId)[0];
     console.log('asaaaa', staff)
     // console.log('b', depart)
     const dispatch = useDispatch();
@@ -65,8 +65,8 @@ const Detail = ({ staffs, departs }) => {
                         <CardImg className='picture' src={staff?.image} />
                         <Button color='primary' className="delete" md={{ size: 1 }} forHtml='delete'
                             onClick={deleteStaffs}> Delete {' '}</Button>
-                        
-                        <ModalEditStaff handleUpdateStaffs={handleUpdateStaffs} /> 
+                        {/* //////////////hàm patch cập nhật thông tin  */}
+                        <ModalEditStaff handleUpdateStaffs={handleUpdateStaffs} staff={staff} />
 
                     </div>
                     <div className="col-md-9 col-sm-8 col-xs-12">

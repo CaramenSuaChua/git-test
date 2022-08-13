@@ -171,16 +171,16 @@ class ModalAddStaff extends React.Component {
                                 <FormGroup row>
                                     <Label md={3} htmlFor='department'>Phòng ban </Label>
                                     <Col md={9}>
-                                        <Input type='select' name='department' id='departmnet' 
+                                        <Input type='select' name='departmentId' id='departmnet' 
                                         className='department'
                                             onChange={this.handleInputChange}
                                             onBlur={this.handleBlur('department')}
                                             value={this.state.department} >
-                                            <option>Sale</option>
-                                            <option>HR</option>
-                                            <option>Marketing</option>
-                                            <option>IT </option>
-                                            <option>Finance</option>
+                                            <option value="Dept01"> Sale</option>
+                                            <option value="Dept02"> HR</option>
+                                            <option value="Dept03"> Marketing</option>
+                                            <option value="Dept04"> IT </option>
+                                            <option value="Dept05"> Finance</option>
                                         </Input>
                                     </Col>
                                 </FormGroup>

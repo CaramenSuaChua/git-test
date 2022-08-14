@@ -100,12 +100,6 @@ class ModalAddStaff extends React.Component {
         this.toggleModal(updateStaff);
     };
 
-    // handleBlur = (field) => (event) => {
-    //     this.setState({
-    //         touched: { ...this.state.touched, [field]: true }
-    //     });
-    // }
-
     handleBlur = (field) => (event) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }

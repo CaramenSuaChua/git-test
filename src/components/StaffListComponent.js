@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import ModalStaff from "./ModalStaff";
 import { Link } from "react-router-dom";
+
 ///////////////hiển thị //////////
 const Menu = ({ staffs, handleAddStaff }) => {
     const [filterStaffs, setFilterStaffs] = useState(staffs)
@@ -10,7 +11,7 @@ const Menu = ({ staffs, handleAddStaff }) => {
     let history = useHistory();
 
     ///////// hàm hiển thị 
-    const RenderMenuItem = ({ staff, onClick }) => {
+    const RenderMenuItem = ({ staff }) => {
         return (
             <Card >
                 <CardBody onClick={() => {
